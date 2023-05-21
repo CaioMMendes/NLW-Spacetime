@@ -1,0 +1,25 @@
+{
+  "extends": ["@rocketseat/eslint-config/react"],
+  // "rules": {
+  //   "camelcase": "off",
+  //   // "prettier/prettier": "off"
+  //   "prettier/prettier": [
+  //     "error",
+  //     {
+  //       "tabWidth": "off"
+  //     }
+  //   ]
+  // }
+  "rules": {
+    "camelcase": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "semi": false,
+        "singleQuote": true,
+        "tabWidth": "auto"
+      }
+    ]
+  }
+}
