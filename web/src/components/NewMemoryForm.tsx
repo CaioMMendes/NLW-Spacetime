@@ -54,6 +54,8 @@ export function NewMemoryForm() {
                     />
                     Tornar memória pública
                 </label>
+
+                <input type="date" name="" id="" className="w-32 text-sm text-gray-200 h-7 p-1 bg-transparent" />
             </div>
 
             <MediaPicker />
