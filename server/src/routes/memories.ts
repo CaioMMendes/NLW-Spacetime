@@ -42,19 +42,27 @@ export async function memoriesRoutes(app: FastifyInstance) {
             content: z.string(),
             coverUrl: z.string(),
             isPublic: z.coerce.boolean().default(false),
+            date: z.string().datetime(),
             // coerce converte o valor para boolear por exemplo Boolean(valor)
         })
-        const { content, coverUrl, isPublic } = bodySchema.parse(request.body)
-
-        const memory = await prisma.memory.create({
-            data: {
-                content,
-                coverUrl,
-                isPublic,
-                userId: request.user.sub,
-            },
-        })
-        return memory
+        const { content, coverUrl, isPublic, date } = bodySchema.parse(
+            request.body
+        )
+        console.log(date)
+        try {
+            const memory = await prisma.memory.create({
+                data: {
+                    content,
+                    coverUrl,
+                    isPublic,
+                    userId: request.user.sub,
+                    createdAt: date,
+                },
+            })
+            return memory
+        } catch (error) {
+            console.log(error)
+        }
     })
     app.put('/memories/:id', async (request, reply) => {
         const paramsSchema = z.object({
