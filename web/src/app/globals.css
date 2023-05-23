@@ -6,3 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
+@layer components {
+  .inputDateIcon::-webkit-calendar-picker-indicator {
+    filter: invert(72%) sepia(4%) saturate(109%) hue-rotate(202deg)
+      brightness(88%) contrast(85%);
+    font-size: 20px;
+  }
+}

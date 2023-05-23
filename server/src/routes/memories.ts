@@ -32,10 +32,13 @@ export async function memoriesRoutes(app: FastifyInstance) {
         const memory = await prisma.memory.findUniqueOrThrow({
             where: { id },
         })
-        if (memory.isPublic && memory.userId !== request.user.sub) {
-            return reply.status(401).send()
+        if (memory) {
+            if (!memory.isPublic && memory.userId !== request.user.sub) {
+                return reply.status(401).send()
+            }
+            return memory
         }
-        return memory
+        return reply.status(404).send()
     })
     app.post('/memories', async (request) => {
         const bodySchema = z.object({
@@ -73,9 +76,12 @@ export async function memoriesRoutes(app: FastifyInstance) {
             content: z.string(),
             coverUrl: z.string(),
             isPublic: z.coerce.boolean().default(false),
+            date: z.string().datetime(),
             // coerce converte o valor para boolear por exemplo Boolean(valor)
         })
-        const { content, coverUrl, isPublic } = bodySchema.parse(request.body)
+        const { content, coverUrl, isPublic, date } = bodySchema.parse(
+            request.body
+        )
 
         let memory = await prisma.memory.findUniqueOrThrow({
             where: {
@@ -94,6 +100,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
                 content,
                 coverUrl,
                 isPublic,
+                createdAt: date,
             },
         })
         return memory

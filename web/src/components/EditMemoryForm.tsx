@@ -5,12 +5,25 @@ import { FormEvent } from "react";
 import { api } from "@/lib/api";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+interface Props {
+    memory: {
+        id: string
+        coverUrl: string
+        excerpt: string
+        createdAt: string
+        isPublic: boolean
+    }
+}
 
-export function NewMemoryForm() {
-
+export function EditMemoryForm(props: Props) {
+    const memory = props.memory
+    console.log(memory)
     const router = useRouter()
+    const [isChecked, setIsChecked] = useState(memory.isPublic)
+    const [inputDate, setInputDate] = useState(memory.createdAt)
 
-    async function handleCreateMemory(event: FormEvent<HTMLFormElement>) {
+    async function handleEditMemory(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
         const date = formData.get('date')
@@ -24,21 +37,19 @@ export function NewMemoryForm() {
             dateTime = new Date(`${date}`)
 
         }
-        console.log(dateTime)
+
         const fileToUpload = formData.get('coverUrl')
+        let coverUrl = ''
         if (fileToUpload instanceof File) {
 
-            if (fileToUpload?.size === 0 || fileToUpload === null) {
-                return alert("Insira uma imagem")
+            if (!fileToUpload?.size === false && !fileToUpload === null) {
+                const uploadFormData = new FormData()
+                uploadFormData.set('file', fileToUpload)
+                const uploadResponse = await api.post('/upload', uploadFormData)
+                coverUrl = uploadResponse.data.fileUrl
             }
         }
-        let coverUrl = ''
-        if (fileToUpload) {
-            const uploadFormData = new FormData()
-            uploadFormData.set('file', fileToUpload)
-            const uploadResponse = await api.post('/upload', uploadFormData)
-            coverUrl = uploadResponse.data.fileUrl
-        }
+
         const token = Cookies.get('token')
         await api.post('/memories', {
             coverUrl,
@@ -55,10 +66,16 @@ export function NewMemoryForm() {
 
 
     }
+    function handleCheckbox() {
+        setIsChecked(!isChecked)
+    }
+    function handleInputDate() {
+
+    }
 
     return (
 
-        <form onSubmit={handleCreateMemory} className="flex flex-1 flex-col gap-2">
+        <form onSubmit={handleEditMemory} className="flex flex-1 flex-col gap-2">
             <div className="flex items-center gap-4">
                 <label
                     htmlFor="media"
@@ -77,14 +94,16 @@ export function NewMemoryForm() {
                         name="isPublic"
                         id="isPublic"
                         value="true"
+                        checked={isChecked}
+                        onChange={handleCheckbox}
                     />
                     Tornar memória pública
                 </label>
 
-                <input type="date" name="date" id="date" className="inputDateIcon w-32 text-sm text-gray-200 h-7 p-1 bg-transparent" />
+                <input type="date" name="date" placeholder={inputDate} id="date" className="inputDateIcon w-32 text-sm text-gray-200 h-7 p-1 bg-transparent" />
             </div>
 
-            <MediaPicker />
+            <MediaPicker imageUrl={memory.coverUrl} />
             <textarea
                 placeholder="Fique livre para adicionar fotos, vídeos e relatos sobre essa experiência que você quer lembrar para sempre."
                 name="content"
