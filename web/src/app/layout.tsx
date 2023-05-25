@@ -1,3 +1,4 @@
+
 import { ReactNode } from 'react'
 import {
   Roboto_Flex as Roboto,
@@ -9,6 +10,9 @@ import Profile from '@/components/Profile'
 import SignIn from '@/components/SignIn'
 import Copyright from '@/components/Copyright'
 import { cookies } from 'next/headers'
+import { ToastContainerClient } from '@/components/ToastContainerClient'
+
+
 
 const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto' })
 const baiJamJuree = BaiJamjuree({
@@ -25,10 +29,12 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   const isAuthenticated = cookies().has('token')
   return (
-    <html lang="en">
+    <html lang="pt-br">
+
       <body
         className={`${roboto.variable} ${baiJamJuree.variable} bg-gray-900 font-sans text-gray-100`}
       >
+        <ToastContainerClient />
         <main className="grid min-h-screen grid-cols-2 ">
           {/* left */}
           <div className="relative flex flex-col items-start justify-between overflow-hidden border-r border-white/10 bg-[url(../assets/bg-stars.svg)] bg-cover px-28 py-16">
@@ -46,6 +52,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
           {/* right */}
           <div className="overflow-y-auto max-h-screen flex flex-col bg-[url(../assets/bg-stars.svg)] bg-cover ">
+
             {children}
           </div>
         </main>

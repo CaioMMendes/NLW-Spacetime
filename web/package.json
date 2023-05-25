@@ -17,6 +17,7 @@
     "dayjs": "^1.11.7",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
+    "i18next": "^22.5.0",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^3.1.2",
     "lucide-react": "^0.218.0",

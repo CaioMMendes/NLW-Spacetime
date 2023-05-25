@@ -17,6 +17,7 @@ interface Memory {
     excerpt: string
     createdAt: string
     isPublic: boolean
+    content: string
 }
 export default async function Page({ params, searchParams }: PageProps) {
 
@@ -36,9 +37,6 @@ export default async function Page({ params, searchParams }: PageProps) {
     }
     return (
 
-
-
-
         <div className="flex flex-1 flex-col gap-4 p-16">
             <Link
                 href="/"
@@ -54,7 +52,7 @@ export default async function Page({ params, searchParams }: PageProps) {
                 :
                 <div className='flex h-full justify-center items-center'>
 
-                    <h1 className='text-xl text-gray-200'>Esta memória não existe</h1>
+                    <h1 className='text-xl text-gray-200'>Esta memória não existe 😥</h1>
                 </div>
 
             }

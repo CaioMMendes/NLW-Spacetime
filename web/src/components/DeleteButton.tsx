@@ -15,20 +15,31 @@ interface Props {
     memories: Memory[]
     setMemories: Dispatch<SetStateAction<Memory[]>>
 }
+import { toastSucess, toastError } from "./ToastMessage"
 export function DeleteButton(props: Props) {
     async function handleDeleteMemory(id: string) {
-        await api.delete(`/memories/${id}`, {
-            headers: {
-                Authorization: `Bearer ${props.token}`
-            }
-        })
-        const filteredMemories = props.memories.filter((memory) => memory.id !== id)
-        props.setMemories(filteredMemories)
+        try {
+            await api.delete(`/memories/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${props.token}`
+                }
+            })
+            const filteredMemories = props.memories.filter((memory) => memory.id !== id)
+            props.setMemories(filteredMemories)
+            return toastSucess("Deletado com sucesso!")
+        } catch (error) {
+            return toastError("Ocorreu um erro!")
+        }
+
     }
     return (
 
-        <button className="hover:text-gray-100 text-gray-200" onClick={() => { handleDeleteMemory(props.memoryId) }}>
-            Deletar
-        </button>
+        <>
+
+            <button className="hover:text-gray-100 text-gray-200" onClick={() => { handleDeleteMemory(props.memoryId) }}>
+                Deletar
+            </button>
+
+        </>
     )
 }

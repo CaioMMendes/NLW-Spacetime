@@ -5,6 +5,7 @@ import { FormEvent } from "react";
 import { api } from "@/lib/api";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { toastSucess } from "./ToastMessage";
 
 export function NewMemoryForm() {
 
@@ -16,15 +17,17 @@ export function NewMemoryForm() {
         const date = formData.get('date')
 
         let dateTime = new Date(Date.now())
+
+
         if (!date === null || !date === false) {
 
 
 
 
             dateTime = new Date(`${date}`)
-
+            dateTime.setDate(dateTime.getDate() + 1)
         }
-        console.log(dateTime)
+
         const fileToUpload = formData.get('coverUrl')
         if (fileToUpload instanceof File) {
 
@@ -50,6 +53,7 @@ export function NewMemoryForm() {
                 Authorization: `Bearer ${token}`
             }
         })
+        toastSucess("Memória criada com sucesso!")
         router.push('/')
 
 
