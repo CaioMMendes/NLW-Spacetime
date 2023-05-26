@@ -75,7 +75,7 @@ const memories = () => {
                                 <Image source={{ uri: memory.coverUrl }}
                                     className="aspect-video w-full rounded-lg"
                                     alt='' />
-                                <Text className="font-body text-base leading-relaxed text-gray-100" >dasdasdasd</Text>
+                                <Text className="font-body text-base leading-relaxed text-gray-100" >{memory.excerpt}</Text>
                                 <Link href={"/memories/id"} asChild>
                                     <TouchableOpacity className="flex-row items-center gap-2">
 
