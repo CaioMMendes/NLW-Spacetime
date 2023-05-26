@@ -56,9 +56,6 @@ export function Memories(props: Props) {
     return <div className='flex flex-col gap-10 p-8'>
 
 
-        <button className="hover:text-gray-100 text-gray-200" onClick={() => { return toastSucess("teste"), console.log('first') }}>
-            toast
-        </button>
         {memories.map((memory) => {
             return (
                 <div key={memory.id} className='space-y-4 '>

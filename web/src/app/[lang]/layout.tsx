@@ -4,15 +4,20 @@ import {
   Roboto_Flex as Roboto,
   Bai_Jamjuree as BaiJamjuree,
 } from 'next/font/google'
-import './globals.css'
+import '../globals.css'
 import Hero from '@/components/Hero'
 import Profile from '@/components/Profile'
 import SignIn from '@/components/SignIn'
 import Copyright from '@/components/Copyright'
 import { cookies } from 'next/headers'
 import { ToastContainerClient } from '@/components/ToastContainerClient'
+import { i18n } from '@/i18n-config'
+import { getDictionary } from '@/get-dictionary'
+import { Locale } from '@/i18n-config'
 
-
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }))
+}
 
 const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto' })
 const baiJamJuree = BaiJamjuree({
@@ -26,10 +31,13 @@ export const metadata = {
   description: 'Projeto NLW da rocketseat',
 }
 
-export default function RootLayout({ children }: { children: ReactNode }) {
-  const isAuthenticated = cookies().has('token')
+export default async function RootLayout({ children,
+  params: { lang },
+}: { children: ReactNode, params: { lang: string } }) {
+  const isAuthenticated = cookies()?.has('token')
+  const dictionary = await getDictionary(lang)
   return (
-    <html lang="pt-br">
+    <html lang={lang}>
 
       <body
         className={`${roboto.variable} ${baiJamJuree.variable} bg-gray-900 font-sans text-gray-100`}
@@ -45,7 +53,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             {/* Sigin */}
             {isAuthenticated ? <Profile /> : <SignIn />}
             {/* Hero   */}
-            <Hero />
+            <Hero dictionary={dictionary} />
             {/* copright  */}
             <Copyright />
           </div>

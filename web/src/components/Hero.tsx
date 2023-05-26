@@ -1,14 +1,17 @@
+'use client'
 import Image from 'next/image'
 import nlwLogo from '../assets/nlw-spacetime-logo.svg'
 import Link from 'next/link'
 
-const Hero = () => {
+
+export default async function Hero(props) {
+
     return (
         <div className="space-y-5">
             <Image src={nlwLogo} alt="NLW logo" />
             <div className="max-w-[420px] space-y-1">
                 <h1 className="text-[39px] font-bold leading-tight text-gray-50">
-                    Sua cápsula do tempo
+                    {props.dictionary['layout'].hero.h1}
                 </h1>
                 <p className="text-lg leading-relaxed">
                     Colecione momentos marcantes da sua jornada e compartilhe
@@ -25,4 +28,4 @@ const Hero = () => {
     )
 }
 
-export default Hero
+

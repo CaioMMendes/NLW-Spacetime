@@ -3,10 +3,7 @@ const nextConfig = {
     images: {
         domains: ['avatars.githubusercontent.com', "192.168.0.107"]
     },
-    i18n: {
-        locales: ['en', 'pt-BR'],
-        defaultLocale: 'pt-BR',
-    },
+
 }
 
 module.exports = nextConfig
