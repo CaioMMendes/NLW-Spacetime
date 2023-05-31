@@ -1,11 +1,10 @@
 
-<div style=' text-align:center; display:flex; flex-direction:column; gap:20px'>
+<div align="center" style="justify-content:center; display:flex; flex-direction:column; gap:20px">
 <img  title="Imagem do projeto web" src="https://cdn.discordapp.com/attachments/958946333027348510/1111712223216271360/image.png" alt="Imagem do projeto web"  />
 <img  title="Imagem do projeto web" src="https://cdn.discordapp.com/attachments/958946333027348510/1111712396197765181/image.png" alt="Imagem do projeto web"  />
 <span style='border-bottom:1px solid #21262d'></span>
-<div style='display:flex; justify-content:space-between'>
+<div style="display:flex; justify-content:space-between; ">
 <img width="40%" title="Imagem do projeto mobile" src="https://cdn.discordapp.com/attachments/958946333027348510/1111714735717617744/Screenshot_2023-05-26-14-51-38-059_host.exp.exponent.jpg" alt="Imagem do projeto mobile"  />
-
 <img width="40%"  title="Imagem do projeto mobile" src="https://cdn.discordapp.com/attachments/958946333027348510/1111714735436611724/Screenshot_2023-05-26-14-57-00-933_host.exp.exponent.jpg" alt="Imagem do projeto mobile"  />
 </div>
 <span style='border-bottom:1px solid #21262d'></span>
