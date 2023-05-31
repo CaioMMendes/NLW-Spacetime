@@ -3,12 +3,12 @@
 <img  title="Imagem do projeto web" src="https://cdn.discordapp.com/attachments/958946333027348510/1111712223216271360/image.png" alt="Imagem do projeto web"  />
 <img  title="Imagem do projeto web" src="https://cdn.discordapp.com/attachments/958946333027348510/1111712396197765181/image.png" alt="Imagem do projeto web"  />
 <span style='border-bottom:1px solid #21262d'></span>
+
 <div style="display:flex; justify-content:space-between; ">
 <img width="40%" title="Imagem do projeto mobile" src="https://cdn.discordapp.com/attachments/958946333027348510/1111714735717617744/Screenshot_2023-05-26-14-51-38-059_host.exp.exponent.jpg" alt="Imagem do projeto mobile"  />
 <img width="40%"  title="Imagem do projeto mobile" src="https://cdn.discordapp.com/attachments/958946333027348510/1111714735436611724/Screenshot_2023-05-26-14-57-00-933_host.exp.exponent.jpg" alt="Imagem do projeto mobile"  />
 </div>
 <span style='border-bottom:1px solid #21262d'></span>
-
 </div>
 
 ## 📌 Sobre
@@ -25,27 +25,26 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 ### 🖥 Web
 
-React/Nextjs
-Tailwind
-Axios
-Typescript
+- [Nextjs](https://nextjs.org/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [Axios](https://axios-http.com/ptbr/docs/intro)
+- [Typescript](https://www.typescriptlang.org/)
 
 ### 🛰️ Server
 
 - [NodeJs](https://nodejs.org/en/docs)
-Node
-Fastify
-Prisma
-Zod
-Typescript
+- [Fastify](https://www.fastify.io/)
+- [Prisma](https://www.prisma.io/)
+- [Zod](https://zod.dev/)
+- [Typescript](https://www.typescriptlang.org/)
 
 ### 📱 Mobile
 
-React native
-Expo
-Axios
-Tailwind
-Typescript
+- [React native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [Axios](https://axios-http.com/ptbr/docs/intro)
+- [Tailwindcss](https://tailwindcss.com/)
+- [Typescript](https://www.typescriptlang.org/)
 
 ## ✏ Para iniciar o projeto basta utilizar os seguintes comandos
 
